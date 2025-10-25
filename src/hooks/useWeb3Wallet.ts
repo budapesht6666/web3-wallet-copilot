@@ -137,6 +137,15 @@ export function useWeb3Wallet(): UseWeb3WalletReturn {
     const { ethereum } = window;
     if (!ethereum) return;
 
+    const isChainNotAddedError = (error: unknown): boolean => {
+      return (
+        error !== null &&
+        typeof error === 'object' &&
+        'code' in error &&
+        error.code === 4902
+      );
+    };
+
     try {
       await ethereum.request({
         method: 'wallet_switchEthereumChain',
@@ -144,7 +153,7 @@ export function useWeb3Wallet(): UseWeb3WalletReturn {
       });
     } catch (switchError) {
       // This error code indicates that the chain has not been added to MetaMask
-      if (switchError && typeof switchError === 'object' && 'code' in switchError && switchError.code === 4902) {
+      if (isChainNotAddedError(switchError)) {
         try {
           await ethereum.request({
             method: 'wallet_addEthereumChain',
