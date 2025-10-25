@@ -1,73 +1,106 @@
-# React + TypeScript + Vite
+# Web3 Wallet - Arbitrum ARB Transfer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Single-page Web3 application built with React/TypeScript for transferring ARB tokens on the Arbitrum network.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🦊 MetaMask Integration
+- 🔗 Automatic wallet connection
+- 🌐 Arbitrum One network support
+- 📝 Form validation for recipient address and amount
+- ✅ Transaction confirmation with Arbiscan link
+- 📱 Mobile-first responsive design
+- 🎨 Modern UI with shadcn/ui components
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** - UI Framework
+- **TypeScript** - Type Safety
+- **Vite** - Build Tool
+- **ethers.js** - Web3 Library
+- **Tailwind CSS** - Styling
+- **shadcn/ui** - UI Components
+- **Lucide React** - Icons
 
-## Expanding the ESLint configuration
+## Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js 20+ and npm
+- MetaMask browser extension
+- Arbitrum One testnet/mainnet account with some ETH for gas fees
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+The application will be available at `http://localhost:5173`
+
+## Build
+
+```bash
+npm run build
+```
+
+## Lint
+
+```bash
+npm run lint
+```
+
+## Usage
+
+1. **Install MetaMask**: If not already installed, download MetaMask from [metamask.io](https://metamask.io/)
+
+2. **Open the Application**: Navigate to the app in your browser
+
+3. **Connect Wallet**: Click "Connect MetaMask" to connect your wallet
+
+4. **Switch to Arbitrum**: If you're not on the Arbitrum network, the app will prompt you to switch
+
+5. **Send ARB**: 
+   - Enter the recipient's Ethereum address
+   - Enter the amount of ETH to send
+   - Click "Send"
+   - Confirm the transaction in MetaMask
+
+6. **View Transaction**: After confirmation, a link to Arbiscan will be displayed to track your transaction
+
+## Features Details
+
+### Wallet Connection
+- Detects MetaMask installation
+- Requests account access
+- Monitors account and network changes
+
+### Network Validation
+- Checks for Arbitrum One network (Chain ID: 42161)
+- Automatically prompts to switch networks
+- Adds Arbitrum network if not present
+
+### Form Validation
+- **Recipient Address**: Validates Ethereum address format
+- **Amount**: Validates positive numbers and checks balance
+
+### Transaction Flow
+- Form validation before submission
+- MetaMask confirmation popup
+- Transaction hash display
+- Direct link to Arbiscan explorer
+
+## Security
+
+- No private keys are stored or transmitted
+- All transactions are confirmed through MetaMask
+- Address validation prevents sending to invalid addresses
+- Balance checks prevent overdraft
+
+## License
+
+MIT
